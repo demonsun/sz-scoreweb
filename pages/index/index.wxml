@@ -1,0 +1,110 @@
+<view class="page-index">
+  <!-- 头部 -->
+  <view class="hero">
+    <view class="hero-bg"></view>
+    <view class="hero-content">
+      <text class="hero-title">深圳积分入学助手</text>
+      <text class="hero-desc">幼升小 / 小升初积分计算，评估目标学校录取概率</text>
+    </view>
+  </view>
+
+  <!-- 学段选择 -->
+  <view class="stage-tabs">
+    <view class="stage-tab {{stage === 'xiaoxue' ? 'tab-active' : ''}}" bindtap="onStageChange" data-stage="xiaoxue">
+      <view class="tab-icon-circle" style="background: #1a73e8;">
+        <text class="tab-icon-label">小</text>
+      </view>
+      <text class="tab-text">幼升小（小一）</text>
+    </view>
+    <view class="stage-tab {{stage === 'chuzhong' ? 'tab-active' : ''}}" bindtap="onStageChange" data-stage="chuzhong">
+      <view class="tab-icon-circle" style="background: #34a853;">
+        <text class="tab-icon-label">初</text>
+      </view>
+      <text class="tab-text">小升初（初一）</text>
+    </view>
+  </view>
+
+  <!-- 功能说明 -->
+  <view class="intro-bar">
+    <view class="intro-item">
+      <view class="intro-icon">
+        <text class="icon-text">1</text>
+      </view>
+      <text class="intro-label">选择区域</text>
+    </view>
+    <view class="intro-arrow">→</view>
+    <view class="intro-item">
+      <view class="intro-icon">
+        <text class="icon-text">2</text>
+      </view>
+      <text class="intro-label">回答问题</text>
+    </view>
+    <view class="intro-arrow">→</view>
+    <view class="intro-item">
+      <view class="intro-icon">
+        <text class="icon-text">3</text>
+      </view>
+      <text class="intro-label">查看结果</text>
+    </view>
+  </view>
+
+  <!-- 区域选择 -->
+  <view class="section">
+    <text class="section-title">选择申请区域</text>
+    <text class="section-desc">覆盖深圳全部10个区，点击进入积分计算</text>
+
+    <!-- 网格模式：5列x2行 -->
+    <view class="district-tiles">
+      <view
+        class="district-tile"
+        wx:for="{{districts}}"
+        wx:key="key"
+        data-key="{{item.key}}"
+        bindtap="onDistrictTap"
+      >
+        <view class="tile-icon" style="background: {{item.color}};">
+          <text class="tile-icon-text">{{item.name[0]}}{{item.name[1]}}</text>
+        </view>
+        <text class="tile-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 温馨提示 -->
+  <view class="tips-card">
+    <view class="tips-header">
+      <text class="tips-icon">!</text>
+      <text class="tips-title">温馨提示</text>
+    </view>
+    <view class="tips-body">
+      <text class="tips-text">1. 积分计算结果仅供参考，最终以教育部门审核为准</text>
+      <text class="tips-text">2. 录取分数线基于往年数据，每年可能有所变化</text>
+      <text class="tips-text">3. 建议同时关注各区教育局官方通知</text>
+      <text class="tips-text">4. 数据更新至2025年招生季</text>
+    </view>
+  </view>
+
+  <!-- 历史记录 -->
+  <view class="section" wx:if="{{lastResult}}">
+    <text class="section-title">上次计算记录</text>
+    <view class="history-card" bindtap="onHistoryTap">
+      <view class="history-left">
+        <text class="history-district">{{lastResult.districtName}} · {{lastResult.stageLabel || '幼升小'}}</text>
+        <text class="history-time">{{lastResult.time}}</text>
+      </view>
+      <view class="history-right">
+        <text class="history-score">{{lastResult.totalScore}}分</text>
+        <text class="history-category">{{lastResult.category}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Banner 广告 -->
+  <view class="ad-section">
+    <ad unit-id="{{adBannerId}}" ad-intervals="60" binderror="onAdError"></ad>
+  </view>
+
+  <view class="footer">
+    <text class="footer-text">数据来源：深圳市各区教育局</text>
+  </view>
+</view>

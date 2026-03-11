@@ -1,0 +1,175 @@
+<view class="page-result">
+  <!-- 积分结果区域 -->
+  <view class="result-hero">
+    <view class="result-hero-bg"></view>
+    <view class="result-content">
+      <text class="result-district">{{districtName}} · {{stageLabel}}</text>
+      <view class="score-display">
+        <score-gauge
+          score="{{scoreResult.totalScore}}"
+          maxScore="{{maxScore}}"
+          category="{{scoreResult.category}}"
+          categoryColor="{{categoryColor}}"
+          details="{{scoreResult.details}}"
+        />
+      </view>
+    </view>
+  </view>
+
+  <!-- 积分明细 -->
+  <view class="detail-card">
+    <text class="card-title">积分明细</text>
+    <view class="detail-row highlight-row">
+      <text class="detail-label">基础分</text>
+      <text class="detail-value">{{scoreResult.baseScore}}</text>
+    </view>
+    <view class="detail-row">
+      <text class="detail-label">加分项合计</text>
+      <text class="detail-value accent">+{{scoreResult.bonusScore}}</text>
+    </view>
+    <view class="detail-divider"></view>
+    <view class="detail-row" wx:for="{{scoreResult.details}}" wx:key="label">
+      <text class="detail-label sub">{{item.label}}</text>
+      <text class="detail-value sub">{{item.value}}</text>
+    </view>
+    <view class="detail-divider"></view>
+    <view class="detail-row total-row">
+      <text class="detail-label">总积分</text>
+      <text class="detail-value total">{{scoreResult.totalScore}}</text>
+    </view>
+  </view>
+
+  <!-- 学校列表 -->
+  <view class="school-section">
+    <view class="school-header">
+      <text class="card-title">学校录取概率评估</text>
+      <text class="school-count">共 {{schoolList.length}} 所学校</text>
+    </view>
+
+    <!-- 类别优先提示（罗湖等区） -->
+    <view class="cat-priority-tip" wx:if="{{isCategoryPriority}}">
+      <text class="cat-tip-icon">!</text>
+      <text class="cat-tip-text">该区采用"类别优先，后取积分"录取规则。即使积分再高，低类别也排在高类别之后。你的类别是 {{scoreResult.category}}。</text>
+    </view>
+
+    <!-- 概率图例 -->
+    <view class="legend-bar">
+      <view class="legend-item">
+        <view class="legend-dot" style="background: #34a853;"></view>
+        <text>很大</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-dot" style="background: #4285f4;"></view>
+        <text>较大</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-dot" style="background: #f9ab00;"></view>
+        <text>有希望</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-dot" style="background: #ea4335;"></view>
+        <text>较小</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-dot" style="background: #999;"></view>
+        <text>很小</text>
+      </view>
+    </view>
+
+    <!-- 你的学区学校 -->
+    <view wx:if="{{hasAreaFilter}}">
+      <view class="area-group-header">
+        <view class="area-group-dot area-dot-primary"></view>
+        <text class="area-group-title">{{areaLabel}} · 学区内学校</text>
+        <text class="area-group-count">{{areaSchools.length}}所</text>
+      </view>
+      <view class="school-list">
+        <view class="school-card area-highlight" wx:for="{{areaSchools}}" wx:key="name" data-school="{{item}}" data-source="area" data-index="{{index}}" bindtap="onSchoolTap">
+          <view class="school-main">
+            <view class="school-info">
+              <view class="school-name-row">
+                <text class="school-name">{{item.name}}</text>
+                <text class="school-tag area-tag">学区内</text>
+                <text class="school-tag" wx:if="{{item.tag}}">{{item.tag}}</text>
+              </view>
+              <text class="school-address">{{item.address}}</text>
+              <view class="school-scores-preview">
+                <text class="score-year" wx:for="{{item.yearScores}}" wx:for-item="ys" wx:key="year">{{ys.year}}: {{ys.display}}</text>
+              </view>
+            </view>
+            <view class="school-prob">
+              <probability-tag probability="{{item.probability}}" />
+              <text class="prob-detail">{{item.probability.percent}}</text>
+            </view>
+          </view>
+          <view class="school-bar">
+            <view class="bar-track">
+              <view class="bar-fill" style="width: {{item.barWidth}}%; background: {{item.probability.color}};"></view>
+              <view class="bar-marker" style="left: {{item.userMarker}}%;"></view>
+            </view>
+            <view class="bar-labels">
+              <text class="bar-label-left">历年最低 {{item.minScore}}</text>
+              <text class="bar-label-right">历年最高 {{item.maxScore}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="area-group-header other-group" wx:if="{{otherSchools.length > 0}}">
+        <view class="area-group-dot area-dot-gray"></view>
+        <text class="area-group-title">全区其他学校</text>
+        <text class="area-group-count">{{otherSchools.length}}所</text>
+      </view>
+    </view>
+
+    <!-- 其他学校 / 全部学校（无筛选时） -->
+    <view class="school-list">
+      <view class="school-card" wx:for="{{otherSchools}}" wx:key="name" data-school="{{item}}" data-source="other" data-index="{{index}}" bindtap="onSchoolTap">
+        <view class="school-main">
+          <view class="school-info">
+            <view class="school-name-row">
+              <text class="school-name">{{item.name}}</text>
+              <text class="school-tag" wx:if="{{item.tag}}">{{item.tag}}</text>
+            </view>
+            <text class="school-address">{{item.address}}</text>
+            <view class="school-scores-preview">
+              <text class="score-year" wx:for="{{item.yearScores}}" wx:for-item="ys" wx:key="year">{{ys.year}}: {{ys.display}}</text>
+            </view>
+          </view>
+          <view class="school-prob">
+            <probability-tag probability="{{item.probability}}" />
+            <text class="prob-detail">{{item.probability.percent}}</text>
+          </view>
+        </view>
+        <view class="school-bar">
+          <view class="bar-track">
+            <view class="bar-fill" style="width: {{item.barWidth}}%; background: {{item.probability.color}};"></view>
+            <view class="bar-marker" style="left: {{item.userMarker}}%;"></view>
+          </view>
+          <view class="bar-labels">
+            <text class="bar-label-left">历年最低 {{item.minScore}}</text>
+            <text class="bar-label-right">历年最高 {{item.maxScore}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- Banner 广告 -->
+  <view class="ad-section">
+    <ad unit-id="{{adBannerId}}" ad-intervals="60" binderror="onAdError"></ad>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="bottom-actions">
+    <view class="action-btn btn-home" bindtap="onGoHome">
+      <text>首页</text>
+    </view>
+    <view class="action-btn btn-recalc" bindtap="onRecalc">
+      <text>重新计算</text>
+    </view>
+    <view class="action-btn btn-share" bindtap="onShare">
+      <text>分享结果</text>
+    </view>
+  </view>
+</view>

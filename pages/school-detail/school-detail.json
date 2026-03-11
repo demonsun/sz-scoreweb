@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "学校详情",
+  "usingComponents": {
+    "probability-tag": "/components/probability-tag/probability-tag"
+  }
+}

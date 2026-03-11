@@ -1,0 +1,24 @@
+<view class="gauge-wrap">
+  <view class="gauge-ring">
+    <view class="gauge-bg"></view>
+    <view class="gauge-value-wrap">
+      <text class="gauge-score">{{score}}</text>
+      <text class="gauge-label">总积分</text>
+    </view>
+    <canvas
+      type="2d"
+      id="gaugeCanvas"
+      class="gauge-canvas"
+      style="width: {{canvasSize}}px; height: {{canvasSize}}px;"
+    ></canvas>
+  </view>
+  <view class="gauge-category">
+    <text class="category-badge" style="background: {{categoryColor}}">{{category}}</text>
+  </view>
+  <view class="gauge-breakdown" wx:if="{{details.length > 0}}">
+    <view class="breakdown-item" wx:for="{{details}}" wx:key="label">
+      <text class="breakdown-label">{{item.label}}</text>
+      <text class="breakdown-value">+{{item.value}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,35 @@
+.progress-wrap {
+  padding: 0 4rpx;
+}
+
+.progress-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.progress-text {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.progress-percent {
+  font-size: 26rpx;
+  color: #1a73e8;
+  font-weight: 600;
+}
+
+.progress-track {
+  height: 8rpx;
+  background: #e8e8e8;
+  border-radius: 4rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #1a73e8, #4285f4);
+  border-radius: 4rpx;
+  transition: width 0.3s ease;
+}

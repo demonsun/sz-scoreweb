@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "积分结果",
+  "usingComponents": {
+    "score-gauge": "/components/score-gauge/score-gauge",
+    "probability-tag": "/components/probability-tag/probability-tag"
+  }
+}

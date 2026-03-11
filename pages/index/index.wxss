@@ -1,0 +1,317 @@
+.page-index {
+  min-height: 100vh;
+  background: #f5f6fa;
+  padding-bottom: 60rpx;
+}
+
+.hero {
+  position: relative;
+  padding: 80rpx 40rpx 60rpx;
+  padding-top: calc(80rpx + env(safe-area-inset-top));
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(135deg, #1a73e8 0%, #4285f4 50%, #6ea6ff 100%);
+  border-radius: 0 0 60rpx 60rpx;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-title {
+  display: block;
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12rpx;
+}
+
+.hero-desc {
+  display: block;
+  font-size: 28rpx;
+  color: rgba(255,255,255,0.85);
+}
+
+/* 学段选择标签 */
+.stage-tabs {
+  display: flex;
+  gap: 16rpx;
+  margin: -20rpx 32rpx 20rpx;
+  position: relative;
+  z-index: 3;
+}
+
+.stage-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10rpx;
+  padding: 22rpx 0;
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.06);
+  border: 3rpx solid transparent;
+  transition: all 0.2s;
+}
+
+.stage-tab:active {
+  transform: scale(0.97);
+}
+
+.tab-active {
+  border-color: #1a73e8;
+  background: #e8f0fe;
+  box-shadow: 0 4rpx 20rpx rgba(26,115,232,0.15);
+}
+
+.tab-icon-circle {
+  width: 44rpx;
+  height: 44rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-icon-label {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+.tab-text {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #666;
+}
+
+.tab-active .tab-text {
+  color: #1a73e8;
+  font-weight: 600;
+}
+
+/* 流程说明 */
+.intro-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx 24rpx;
+  margin: -30rpx 32rpx 24rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 32rpx rgba(26, 115, 232, 0.12);
+  position: relative;
+  z-index: 2;
+}
+
+.intro-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8rpx;
+}
+
+.intro-icon {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  background: #e8f0fe;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-text {
+  font-size: 28rpx;
+  font-weight: 700;
+  color: #1a73e8;
+}
+
+.intro-label {
+  font-size: 24rpx;
+  color: #666;
+}
+
+.intro-arrow {
+  font-size: 32rpx;
+  color: #ccc;
+  margin: 0 20rpx;
+  margin-bottom: 32rpx;
+}
+
+/* 区域 */
+.section {
+  padding: 0 32rpx;
+  margin-top: 32rpx;
+}
+
+.section-title {
+  display: block;
+  font-size: 34rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.section-desc {
+  display: block;
+  font-size: 26rpx;
+  color: #888;
+  margin-top: 4rpx;
+  margin-bottom: 20rpx;
+}
+
+.district-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  justify-content: space-between;
+}
+
+.district-tile {
+  width: calc(20% - 13rpx);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10rpx;
+  padding: 20rpx 0;
+  background: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.05);
+  transition: all 0.15s;
+}
+
+.district-tile:active {
+  transform: scale(0.93);
+  background: #f8f8f8;
+}
+
+.tile-icon {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 18rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tile-icon-text {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #fff;
+}
+
+.tile-name {
+  font-size: 22rpx;
+  color: #333;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* 提示 */
+.tips-card {
+  margin: 32rpx 32rpx 0;
+  background: #fffbf0;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  border: 1rpx solid #ffeeba;
+}
+
+.tips-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16rpx;
+}
+
+.tips-icon {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background: #f9ab00;
+  color: #fff;
+  font-size: 24rpx;
+  font-weight: 700;
+  text-align: center;
+  line-height: 36rpx;
+  margin-right: 12rpx;
+}
+
+.tips-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #856404;
+}
+
+.tips-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.tips-text {
+  font-size: 24rpx;
+  color: #856404;
+  line-height: 1.6;
+}
+
+/* 历史记录 */
+.history-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05);
+  margin-top: 16rpx;
+}
+
+.history-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-district {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.history-time {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.history-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.history-score {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1a73e8;
+}
+
+.history-category {
+  font-size: 24rpx;
+  color: #888;
+  margin-top: 4rpx;
+}
+
+.footer {
+  text-align: center;
+  padding: 40rpx 0 20rpx;
+}
+
+.footer-text {
+  font-size: 22rpx;
+  color: #bbb;
+}

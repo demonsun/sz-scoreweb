@@ -1,0 +1,19 @@
+.prob-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 6rpx 20rpx;
+  border-radius: 8rpx;
+  flex-shrink: 0;
+}
+
+.prob-level {
+  font-size: 24rpx;
+  color: #fff;
+  font-weight: 600;
+}
+
+.prob-percent {
+  font-size: 22rpx;
+  color: rgba(255,255,255,0.85);
+}

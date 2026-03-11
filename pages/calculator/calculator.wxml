@@ -1,0 +1,74 @@
+<view class="page-calculator">
+  <!-- 头部区域信息 -->
+  <view class="calc-header">
+    <view class="header-left" bindtap="onBack">
+      <text class="back-arrow">‹</text>
+    </view>
+    <view class="header-center">
+      <text class="header-title">{{districtName}} · {{stageLabel}}</text>
+    </view>
+    <view class="header-right">
+      <text class="reset-btn" bindtap="onReset">重置</text>
+    </view>
+  </view>
+
+  <!-- 进度条 -->
+  <view class="progress-section">
+    <progress-bar current="{{currentStep + 1}}" total="{{visibleQuestions.length}}" />
+  </view>
+
+  <!-- 问题区域 -->
+  <swiper
+    class="question-swiper"
+    current="{{currentStep}}"
+    duration="300"
+    easing-function="easeInOutCubic"
+    bindchange="onSwiperChange"
+    style="height: {{swiperHeight}}px;"
+  >
+    <swiper-item wx:for="{{visibleQuestions}}" wx:key="id">
+      <view class="swiper-content" id="q-{{item.id}}">
+        <question-card
+          question="{{item}}"
+          currentValue="{{answers[item.id]}}"
+          bind:change="onAnswerChange"
+        />
+      </view>
+    </swiper-item>
+  </swiper>
+
+  <!-- 操作按钮 -->
+  <view class="action-bar">
+    <view
+      class="btn-prev {{currentStep <= 0 ? 'btn-disabled' : ''}}"
+      bindtap="onPrev"
+    >
+      <text>上一题</text>
+    </view>
+
+    <view wx:if="{{currentStep < visibleQuestions.length - 1}}"
+      class="btn-next {{!answers[visibleQuestions[currentStep].id] ? 'btn-disabled' : ''}}"
+      bindtap="onNext"
+    >
+      <text>下一题</text>
+    </view>
+
+    <view wx:else
+      class="btn-submit {{!allAnswered ? 'btn-disabled' : ''}}"
+      bindtap="onSubmit"
+    >
+      <text>查看结果</text>
+    </view>
+  </view>
+
+  <!-- 快速跳转 -->
+  <view class="step-dots">
+    <view
+      wx:for="{{visibleQuestions}}"
+      wx:key="id"
+      class="step-dot {{index === currentStep ? 'dot-active' : ''}} {{answers[item.id] ? 'dot-answered' : ''}}"
+      data-index="{{index}}"
+      bindtap="onDotTap"
+    ></view>
+  </view>
+</view>

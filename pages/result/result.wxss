@@ -1,0 +1,408 @@
+.page-result {
+  min-height: 100vh;
+  background: #f5f6fa;
+  padding-bottom: 160rpx;
+}
+
+.result-hero {
+  position: relative;
+  padding: 40rpx 32rpx 60rpx;
+  overflow: hidden;
+}
+
+.result-hero-bg {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 40rpx;
+  background: linear-gradient(135deg, #1a73e8, #4285f4);
+  border-radius: 0 0 48rpx 48rpx;
+}
+
+.result-content {
+  position: relative;
+  z-index: 1;
+}
+
+.result-district {
+  display: block;
+  text-align: center;
+  color: rgba(255,255,255,0.9);
+  font-size: 28rpx;
+  margin-bottom: 16rpx;
+}
+
+.score-display {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  box-shadow: 0 8rpx 40rpx rgba(0,0,0,0.1);
+}
+
+/* 积分明细 */
+.detail-card {
+  margin: 0 32rpx 24rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 28rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05);
+}
+
+.card-title {
+  display: block;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 20rpx;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10rpx 0;
+}
+
+.highlight-row {
+  padding: 12rpx 16rpx;
+  background: #f8f9fa;
+  border-radius: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.detail-label {
+  font-size: 28rpx;
+  color: #555;
+}
+
+.detail-label.sub {
+  font-size: 26rpx;
+  color: #888;
+  padding-left: 16rpx;
+}
+
+.detail-value {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.detail-value.accent {
+  color: #1a73e8;
+}
+
+.detail-value.sub {
+  font-size: 26rpx;
+  color: #666;
+  font-weight: 500;
+}
+
+.detail-value.total {
+  font-size: 36rpx;
+  color: #1a73e8;
+  font-weight: 700;
+}
+
+.detail-divider {
+  height: 1rpx;
+  background: #f0f0f0;
+  margin: 12rpx 0;
+}
+
+.total-row {
+  padding-top: 12rpx;
+}
+
+/* 学校区域 */
+.school-section {
+  padding: 0 32rpx;
+}
+
+.school-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8rpx;
+}
+
+.school-count {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.cat-priority-tip {
+  display: flex;
+  align-items: flex-start;
+  gap: 10rpx;
+  background: #fff3e0;
+  border: 1rpx solid #ffe0b2;
+  border-radius: 12rpx;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.cat-tip-icon {
+  width: 32rpx;
+  height: 32rpx;
+  border-radius: 50%;
+  background: #ff9800;
+  color: #fff;
+  font-size: 22rpx;
+  font-weight: 700;
+  text-align: center;
+  line-height: 32rpx;
+  flex-shrink: 0;
+}
+
+.cat-tip-text {
+  font-size: 24rpx;
+  color: #e65100;
+  line-height: 1.6;
+}
+
+.legend-bar {
+  display: flex;
+  gap: 20rpx;
+  flex-wrap: wrap;
+  margin-bottom: 20rpx;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6rpx;
+}
+
+.legend-dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 4rpx;
+}
+
+.legend-item text {
+  font-size: 22rpx;
+  color: #888;
+}
+
+/* 学区分组 */
+.area-group-header {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  margin-bottom: 16rpx;
+  margin-top: 8rpx;
+}
+
+.other-group {
+  margin-top: 32rpx;
+}
+
+.area-group-dot {
+  width: 14rpx;
+  height: 14rpx;
+  border-radius: 50%;
+}
+
+.area-dot-primary {
+  background: #1a73e8;
+}
+
+.area-dot-gray {
+  background: #999;
+}
+
+.area-group-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.area-group-count {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.area-highlight {
+  border-left: 6rpx solid #1a73e8;
+}
+
+.area-tag {
+  background: #1a73e8 !important;
+  color: #fff !important;
+}
+
+.school-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20rpx;
+}
+
+.school-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 24rpx;
+  box-shadow: 0 2rpx 12rpx rgba(0,0,0,0.05);
+}
+
+.school-card:active {
+  transform: scale(0.99);
+}
+
+.school-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.school-info {
+  flex: 1;
+  margin-right: 16rpx;
+}
+
+.school-name-row {
+  display: flex;
+  align-items: center;
+  gap: 10rpx;
+  flex-wrap: wrap;
+}
+
+.school-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #1a1a1a;
+  line-height: 1.4;
+}
+
+.school-tag {
+  font-size: 20rpx;
+  color: #1a73e8;
+  background: #e8f0fe;
+  padding: 2rpx 12rpx;
+  border-radius: 6rpx;
+  flex-shrink: 0;
+}
+
+.school-address {
+  display: block;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 4rpx;
+}
+
+.school-scores-preview {
+  display: flex;
+  gap: 16rpx;
+  margin-top: 8rpx;
+  flex-wrap: wrap;
+}
+
+.score-year {
+  font-size: 22rpx;
+  color: #888;
+  background: #f5f5f5;
+  padding: 2rpx 12rpx;
+  border-radius: 6rpx;
+}
+
+.school-prob {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6rpx;
+  flex-shrink: 0;
+}
+
+.prob-detail {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.school-bar {
+  margin-top: 16rpx;
+}
+
+.bar-track {
+  position: relative;
+  height: 12rpx;
+  background: #f0f0f0;
+  border-radius: 6rpx;
+  overflow: visible;
+}
+
+.bar-fill {
+  height: 100%;
+  border-radius: 6rpx;
+  opacity: 0.6;
+}
+
+.bar-marker {
+  position: absolute;
+  top: -4rpx;
+  width: 6rpx;
+  height: 20rpx;
+  background: #1a1a1a;
+  border-radius: 3rpx;
+  transform: translateX(-50%);
+}
+
+.bar-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 6rpx;
+}
+
+.bar-label-left, .bar-label-right {
+  font-size: 20rpx;
+  color: #bbb;
+}
+
+/* 底部操作 */
+.bottom-actions {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  gap: 20rpx;
+  padding: 20rpx 32rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  background: #fff;
+  box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.06);
+  z-index: 10;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 22rpx 0;
+  border-radius: 16rpx;
+  text-align: center;
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.btn-home {
+  background: #fff;
+  color: #1a73e8;
+  border: 2rpx solid #1a73e8;
+  flex: 0.6;
+}
+
+.btn-home:active {
+  background: #e8f0fe;
+}
+
+.btn-recalc {
+  background: #f0f0f0;
+  color: #555;
+}
+
+.btn-recalc:active {
+  background: #e0e0e0;
+}
+
+.btn-share {
+  background: #1a73e8;
+  color: #fff;
+}
+
+.btn-share:active {
+  opacity: 0.85;
+}

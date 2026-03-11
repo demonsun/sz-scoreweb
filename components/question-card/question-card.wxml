@@ -1,0 +1,42 @@
+<view class="question-card">
+  <view class="question-header">
+    <text class="question-title">{{question.title}}</text>
+    <text class="question-subtitle" wx:if="{{question.subtitle}}">{{question.subtitle}}</text>
+  </view>
+
+  <view class="question-body">
+    <!-- 单选题 -->
+    <block wx:if="{{question.type === 'single'}}">
+      <view
+        class="option-item {{currentValue === item.value ? 'option-selected' : ''}}"
+        wx:for="{{question.options}}"
+        wx:key="value"
+        data-value="{{item.value}}"
+        bindtap="onOptionTap"
+      >
+        <view class="option-radio {{currentValue === item.value ? 'radio-checked' : ''}}">
+          <view class="radio-inner" wx:if="{{currentValue === item.value}}"></view>
+        </view>
+        <text class="option-label">{{item.label}}</text>
+      </view>
+    </block>
+
+    <!-- 数字输入 -->
+    <block wx:if="{{question.type === 'number'}}">
+      <view class="number-input-wrap">
+        <input
+          class="number-input"
+          type="digit"
+          placeholder="{{question.placeholder || '请输入'}}"
+          value="{{currentValue}}"
+          bindinput="onNumberInput"
+          bindblur="onNumberBlur"
+        />
+        <text class="number-unit" wx:if="{{question.unit}}">{{question.unit}}</text>
+      </view>
+      <view class="number-hint" wx:if="{{question.min !== undefined}}">
+        <text>范围：{{question.min}} ~ {{question.max}} {{question.unit || ''}}</text>
+      </view>
+    </block>
+  </view>
+</view>

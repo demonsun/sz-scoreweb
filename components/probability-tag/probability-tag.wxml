@@ -1,0 +1,4 @@
+<view class="prob-tag" style="background: {{bgColor}};">
+  <text class="prob-level">{{probability.level}}</text>
+  <text class="prob-percent">{{probability.percent}}</text>
+</view>

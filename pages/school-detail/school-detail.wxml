@@ -1,0 +1,122 @@
+<view class="page-school-detail">
+  <!-- 学校头部 -->
+  <view class="school-hero">
+    <view class="hero-bg"></view>
+    <view class="hero-body">
+      <text class="school-name">{{school.name}}</text>
+      <text class="school-address">{{school.address}}</text>
+      <view class="prob-display">
+        <probability-tag probability="{{school.probability}}" />
+      </view>
+    </view>
+  </view>
+
+  <!-- 你的积分 vs 学校 -->
+  <view class="compare-card">
+    <text class="card-title">积分对比</text>
+    <view class="cat-note" wx:if="{{catNote}}">
+      <text>{{catNote}}</text>
+    </view>
+    <view class="compare-row">
+      <view class="compare-item">
+        <text class="compare-label">你的积分</text>
+        <text class="compare-score user-score">{{userScore}}</text>
+      </view>
+      <view class="compare-vs">VS</view>
+      <view class="compare-item">
+        <text class="compare-label">{{latestYear}}年录取线</text>
+        <text class="compare-score school-score">{{latestDisplay || latestScore}}</text>
+      </view>
+    </view>
+    <view class="compare-diff {{diffPositive ? 'diff-positive' : 'diff-negative'}}">
+      <text>同类别内{{diffPositive ? '高出' : '低于'}}录取线 {{diffAbs}} 分</text>
+    </view>
+  </view>
+
+  <!-- 趋势图 -->
+  <view class="chart-card">
+    <text class="card-title">历年录取分数线</text>
+    <view class="chart-container">
+      <canvas type="2d" id="trendChart" class="trend-canvas" style="width: 100%; height: 400rpx;"></canvas>
+    </view>
+    <view class="chart-legend">
+      <view class="legend-item">
+        <view class="legend-line" style="background: #1a73e8;"></view>
+        <text>录取分数线</text>
+      </view>
+      <view class="legend-item">
+        <view class="legend-line dashed" style="background: #ea4335;"></view>
+        <text>你的积分</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 详细数据 -->
+  <view class="data-card">
+    <text class="card-title">历年录取数据</text>
+    <view class="data-table">
+      <view class="table-header">
+        <text class="col-year">年份</text>
+        <text class="col-score">录取分数线</text>
+        <text class="col-diff">与你的差距</text>
+      </view>
+      <view class="table-row" wx:for="{{yearData}}" wx:key="year">
+        <text class="col-year">{{item.year}}</text>
+        <text class="col-score">{{item.display || item.score}}</text>
+        <text class="col-diff {{item.diff >= 0 ? 'text-success' : 'text-danger'}}">
+          {{item.diff >= 0 ? '+' : ''}}{{item.diff}}
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 趋势分析 -->
+  <view class="analysis-card">
+    <text class="card-title">趋势分析</text>
+    <view class="analysis-body">
+      <view class="analysis-item">
+        <text class="analysis-label">分数线趋势</text>
+        <text class="analysis-value {{trendDirection === 'up' ? 'text-danger' : trendDirection === 'down' ? 'text-success' : ''}}">
+          {{trendText}}
+        </text>
+      </view>
+      <view class="analysis-item">
+        <text class="analysis-label">近3年平均分</text>
+        <text class="analysis-value">{{avgScore}}</text>
+      </view>
+      <view class="analysis-item">
+        <text class="analysis-label">近3年最高分</text>
+        <text class="analysis-value">{{maxHistoryScore}}</text>
+      </view>
+      <view class="analysis-item">
+        <text class="analysis-label">近3年最低分</text>
+        <text class="analysis-value">{{minHistoryScore}}</text>
+      </view>
+      <view class="analysis-item">
+        <text class="analysis-label">录取概率评估</text>
+        <text class="analysis-value" style="color: {{school.probability.color}};">
+          {{school.probability.level}}（{{school.probability.percent}}）
+        </text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 建议 -->
+  <view class="suggestion-card">
+    <text class="card-title">建议</text>
+    <view class="suggestion-body" wx:if="{{suggestionUnlocked}}">
+      <text class="suggestion-text">{{suggestion}}</text>
+    </view>
+    <view class="suggestion-locked" wx:else>
+      <text class="locked-text">观看短视频解锁详细入学建议</text>
+      <view class="unlock-btn" bindtap="onWatchAd">
+        <text>免费解锁</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- Banner 广告 -->
+  <view class="ad-section">
+    <ad unit-id="{{adBannerId}}" ad-intervals="60" binderror="onAdError"></ad>
+  </view>
+</view>
