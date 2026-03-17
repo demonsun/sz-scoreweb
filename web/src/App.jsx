@@ -2,6 +2,8 @@ import { useMemo, useState, useCallback, useRef, useEffect } from "react";
 import districtData from "../../data/districts/index.js";
 import scoreEngine from "../../utils/score-engine.js";
 import probability from "../../utils/probability.js";
+import AdUnit from "./AdUnit.jsx";
+import { ADSENSE_CONFIG } from "./ad-config.js";
 
 const PAGES = { HOME: "home", CALC: "calc", RESULT: "result", DETAIL: "detail" };
 
@@ -99,6 +101,8 @@ function HomePage({ districts, stage, setStage, onSelect }) {
         ))}
       </div>
 
+      <AdUnit slot={ADSENSE_CONFIG.slots.homeBanner} className="ad-home" />
+
       <footer className="home-footer">
         <p>数据基于2025年各区教育局公开政策，仅供参考</p>
       </footer>
@@ -185,6 +189,8 @@ function CalcPage({ districtKey, stage, answers, setAnswers, currentStep, setCur
         </div>
       </div>
 
+      <AdUnit slot={ADSENSE_CONFIG.slots.calcBanner} className="ad-calc" />
+
       <div className="calc-actions">
         <button className="btn-secondary" onClick={handlePrev} disabled={currentStep === 0}>上一步</button>
         <button className="btn-primary" onClick={handleNext} disabled={!canNext}>
@@ -226,6 +232,8 @@ function ResultPage({ districtKey, stage, answers, result, onBack, onHome, onSch
         <span className="category-badge" style={{ background: getCatColor(result.category) }}>{result.category}</span>
       </div>
 
+      <AdUnit slot={ADSENSE_CONFIG.slots.resultTop} className="ad-result" />
+
       <div className="detail-card">
         <h3>积分明细</h3>
         {result.details.map((d) => (
@@ -235,6 +243,8 @@ function ResultPage({ districtKey, stage, answers, result, onBack, onHome, onSch
           </div>
         ))}
       </div>
+
+      <AdUnit slot={ADSENSE_CONFIG.slots.resultMid} className="ad-result" />
 
       <div className="school-section">
         <h3>匹配学校（{schoolList.length} 所）</h3>
@@ -337,6 +347,8 @@ function DetailPage({ school, userScore, userCategory, onBack }) {
         <h3>录取建议</h3>
         <p>{suggestion}</p>
       </div>
+
+      <AdUnit slot={ADSENSE_CONFIG.slots.detailBottom} className="ad-detail" />
     </div>
   );
 }
